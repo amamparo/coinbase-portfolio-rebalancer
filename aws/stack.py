@@ -10,7 +10,7 @@ class MyStack(Stack):
   def __init__(self, scope: Construct, _id: str, **kwargs) -> None:
     super().__init__(scope, _id, **kwargs)
     Rule(
-      self, 'HourlyRule', schedule=Schedule.rate(Duration.hours(1))
+      self, 'EveryFiveMinutes', schedule=Schedule.rate(Duration.minutes(5))
     ).add_target(LambdaFunction(
       DockerImageFunction(
         self,
