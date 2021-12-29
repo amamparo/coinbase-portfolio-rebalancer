@@ -5,12 +5,15 @@ name = "pypi"
 
 [packages]
 python-dotenv = "*"
-requests = "*"
 injector = "*"
 cbpro = "*"
 
 [dev-packages]
 aws-cdk-core = "*"
+aws-cdk-aws-lambda = "*"
+aws-cdk-aws-iam = "*"
+aws-cdk-aws-events = "*"
+aws-cdk-aws-events-targets = "*"
 mypy = "*"
 
 [requires]

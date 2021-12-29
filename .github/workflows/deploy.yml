@@ -1,0 +1,33 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.8.6'
+      - name: Setup pipenv
+        run: |
+          sudo pip install pipenv --upgrade
+          pipenv --python 3.8.6
+          pipenv install -d
+      - name: Setup AWS CDK
+        run: |
+          curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+          sudo apt-get -y -qq install nodejs
+          sudo npm i -g aws-cdk
+      - name: Deploy
+        run: |
+          AWS_DEFAULT_REGION="us-east-1" \
+          AWS_ACCESS_KEY_ID="${{ secrets.AWS_ACCESS_KEY_ID }}" \
+          AWS_SECRET_ACCESS_KEY="${{ secrets.AWS_SECRET_ACCESS_KEY }}" \
+          COINBASE_PRO_KEY="${{ secrets.COINBASE_PRO_KEY }}" \
+          COINBASE_PRO_SECRET="${{ secrets.COINBASE_PRO_SECRET }}" \
+          COINBASE_PRO_PASSPHRASE="${{ secrets.COINBASE_PRO_PASSPHRASE }}" \
+          cdk deploy --require-approval never --verbose
