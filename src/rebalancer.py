@@ -6,12 +6,12 @@ ETH = 'ETH'
 rebalance_threshold = 0.05
 
 
-class PortfolioOptimizer:
+class Rebalancer:
   @inject
   def __init__(self, coinbase_pro: CoinbasePro):
     self.__cbp = coinbase_pro
 
-  def optimize_portfolio(self) -> None:
+  def rebalance(self) -> None:
     self.__liquidate_irrelevant_currencies_to_btc()
     self.__rebalance()
 

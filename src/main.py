@@ -1,13 +1,11 @@
 from typing import Dict, Any
-
 from injector import inject, Injector
-
-from src.portfolio_optimizer import PortfolioOptimizer
+from src.rebalancer import Rebalancer
 
 
 @inject
-def main(portfolio_optimizer: PortfolioOptimizer) -> None:
-  portfolio_optimizer.optimize_portfolio()
+def main(rebalancer: Rebalancer) -> None:
+  rebalancer.rebalance()
 
 
 def lambda_handler(event: Dict = None, context: Any = None) -> None:
