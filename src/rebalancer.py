@@ -19,7 +19,7 @@ class Rebalancer:
     for account in self.__cbp.get_accounts():
       balance = float(account['balance'])
       currency = account['currency']
-      if not balance or currency in [BTC, ETH]:
+      if not balance or currency in ['USD', BTC, ETH]:
         continue
       self.__cbp.liquidate(currency, BTC)
 
