@@ -17,4 +17,4 @@ aws-cdk-aws-events-targets = "*"
 mypy = "*"
 
 [requires]
-python_version = "3.8.6"
+python_version = "3.8"
