@@ -3,7 +3,7 @@ from src.coinbase_pro import CoinbasePro
 
 BTC = 'BTC'
 ETH = 'ETH'
-rebalance_threshold = 0.05
+rebalance_threshold = 0.15
 
 
 class Rebalancer:
@@ -33,7 +33,7 @@ class Rebalancer:
     }
     target_weight = 1 / len(currencies)
     should_rebalance = any(
-      (abs(weight - target_weight) / target_weight) > rebalance_threshold
+      (abs(weight - target_weight) / target_weight) >= rebalance_threshold
       for currency, weight in current_weights_by_currency.items()
     )
     if not should_rebalance:
