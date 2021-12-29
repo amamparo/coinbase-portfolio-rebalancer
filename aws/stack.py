@@ -1,6 +1,7 @@
 from os import environ, getcwd
 
 from aws_cdk.aws_events import Rule, Schedule
+from aws_cdk.aws_events_targets import LambdaFunction
 from aws_cdk.aws_lambda import DockerImageFunction, DockerImageCode
 from aws_cdk.core import Stack, Construct, App, Duration
 
@@ -10,7 +11,7 @@ class MyStack(Stack):
     super().__init__(scope, _id, **kwargs)
     Rule(
       self, 'HourlyRule', schedule=Schedule.rate(Duration.hours(1))
-    ).add_target(
+    ).add_target(LambdaFunction(
       DockerImageFunction(
         self,
         'Function',
@@ -28,7 +29,7 @@ class MyStack(Stack):
           'COINBASE_PRO_PASSPHRASE': environ.get('COINBASE_PRO_PASSPHRASE')
         }
       )
-    )
+    ))
 
 
 if __name__ == '__main__':
