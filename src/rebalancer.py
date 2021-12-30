@@ -3,7 +3,7 @@ from src.coinbase_pro import CoinbasePro
 
 BTC = 'BTC'
 ETH = 'ETH'
-rebalance_threshold = 0.15
+rebalance_threshold = 0.10
 
 
 class Rebalancer:
