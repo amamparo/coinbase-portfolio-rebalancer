@@ -24,8 +24,7 @@ class Main:
     self.__rebalance()
 
   def __transfer_usdc_from_coinbase(self) -> None:
-    usdc_balance = self.__cb.get_account(USDC)['native_balance']
-    usdc_amount = float(usdc_balance['amount'])
+    usdc_amount = float(self.__cb.get_account(USDC)['native_balance']['amount'])
     if not usdc_amount:
       return
     self.__cbp.withdraw_from_coinbase(usdc_amount, USDC)
