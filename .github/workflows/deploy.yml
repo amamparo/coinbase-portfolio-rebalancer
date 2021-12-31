@@ -7,6 +7,14 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
+    env:
+      AWS_DEFAULT_REGION: us-east-1
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      COINBASE_PRO_KEY: ${{ secrets.COINBASE_PRO_KEY }}
+      COINBASE_PRO_SECRET: ${{ secrets.COINBASE_PRO_SECRET }}
+      COINBASE_PRO_PASSPHRASE: ${{ secrets.COINBASE_PRO_PASSPHRASE }}
+      COINBASE_PRO_USDC_WALLET_ADDRESS: ${{ secrets.COINBASE_PRO_USDC_WALLET_ADDRESS }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
@@ -24,10 +32,4 @@ jobs:
           sudo npm i -g aws-cdk
       - name: Deploy
         run: |
-          AWS_DEFAULT_REGION="us-east-1" \
-          AWS_ACCESS_KEY_ID="${{ secrets.AWS_ACCESS_KEY_ID }}" \
-          AWS_SECRET_ACCESS_KEY="${{ secrets.AWS_SECRET_ACCESS_KEY }}" \
-          COINBASE_PRO_KEY="${{ secrets.COINBASE_PRO_KEY }}" \
-          COINBASE_PRO_SECRET="${{ secrets.COINBASE_PRO_SECRET }}" \
-          COINBASE_PRO_PASSPHRASE="${{ secrets.COINBASE_PRO_PASSPHRASE }}" \
           cdk deploy --require-approval never --verbose

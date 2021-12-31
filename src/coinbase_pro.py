@@ -1,5 +1,4 @@
-import decimal
-from math import floor, log, log10, exp
+from math import floor, log10
 from time import sleep
 from typing import Optional, List, cast
 
@@ -13,9 +12,11 @@ from src.environment import Environment
 class CoinbasePro:
   @inject
   def __init__(self, env: Environment):
-    self.__client = AuthenticatedClient(env.get_coinbase_pro_key(), env.get_coinbase_pro_secret(),
-                                        env.get_coinbase_pro_passphrase())
+    self.__client = AuthenticatedClient(env.coinbase_pro_key, env.coinbase_pro_secret, env.coinbase_pro_passphrase)
     self.__products_cache: Optional[List[dict]] = None
+
+  def withdraw_from_coinbase(self, amount: float, account_id: str) -> None:
+    self.__client.coinbase_deposit(amount, account_id, account_id)
 
   def get_accounts(self) -> List[dict]:
     return self.__client.get_accounts()
