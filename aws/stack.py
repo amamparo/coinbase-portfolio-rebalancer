@@ -26,7 +26,9 @@ class MyStack(Stack):
         environment={
           'COINBASE_PRO_KEY': environ.get('COINBASE_PRO_KEY'),
           'COINBASE_PRO_SECRET': environ.get('COINBASE_PRO_SECRET'),
-          'COINBASE_PRO_PASSPHRASE': environ.get('COINBASE_PRO_PASSPHRASE')
+          'COINBASE_PRO_PASSPHRASE': environ.get('COINBASE_PRO_PASSPHRASE'),
+          'COINBASE_KEY': environ.get('COINBASE_KEY'),
+          'COINBASE_SECRET': environ.get('COINBASE_SECRET')
         }
       )
     ))

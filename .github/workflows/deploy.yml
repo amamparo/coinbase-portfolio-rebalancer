@@ -14,7 +14,8 @@ jobs:
       COINBASE_PRO_KEY: ${{ secrets.COINBASE_PRO_KEY }}
       COINBASE_PRO_SECRET: ${{ secrets.COINBASE_PRO_SECRET }}
       COINBASE_PRO_PASSPHRASE: ${{ secrets.COINBASE_PRO_PASSPHRASE }}
-      COINBASE_PRO_USDC_WALLET_ADDRESS: ${{ secrets.COINBASE_PRO_USDC_WALLET_ADDRESS }}
+      COINBASE_KEY: ${{ secrets.COINBASE_KEY }}
+      COINBASE_SECRET: ${{ secrets.COINBASE_SECRET }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
